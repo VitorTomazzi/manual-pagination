@@ -7,7 +7,8 @@ app.use(express.json());
 
 app.use('/apps', appsRouter);
 
-app.use('/', function(req, res) {
+//checked connected
+app.use('/', (req, res) => {
 	res.send('Hello World');
 });
 

@@ -13,7 +13,7 @@ const router = express.Router();
 //     {id: 10, name: 'my-app-010}
 // ];
 
-// instead of manually creating data, we loop and push into empty array
+// instead of manually creating data, we loop and push into empty data array
 let data = [];
 for (let i = 1; i <= 300; i++) {
 	data.push({
@@ -23,17 +23,19 @@ for (let i = 1; i <= 300; i++) {
 }
 
 // router logic to print the data onto our web app. this GET route prints every app
-router.get('/', function(req, res) {
-	res.status(200).json(data);
+router.get('/', (req, res, next) => {
+	res.status(200).send(data);
 });
 
 // this GET route lets us print each app by id
-router.get('/:id', function(req, res) {
-	let found = data.find(function(item) {
-		return item.id === parseInt(req.params.id);
+router.get('/:id', (req, res, next) => {
+	let id = req.params.id;
+
+	let found = data.find((item) => {
+		return item.id === parseInt(id);
 	});
 	if (found) {
-		res.status(200).json(found);
+		res.status(200).send(found);
 	} else {
 		res.sendStatus(404);
 	}
