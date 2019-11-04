@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 // this GET route lets us print each app that we want to query(?) using page= & limit=
 app.get('/apps', (req, res) => {
 	const page = parseInt(req.query.page); //parse int to make queries return as numbers and not strings
-	const limit = parseInt(req.query.limit);
+	const limit = parseInt(req.query.limit) || 50;
 
 	//page * limit will give us which slice of the data we want to look at
 	const startIndex = (page - 1) * limit; //page - 1 because we start a 0 index
