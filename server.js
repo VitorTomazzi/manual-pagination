@@ -33,40 +33,51 @@ app.get('/', (req, res) => {
 app.get('/apps', (req, res) => {
 	const page = parseInt(req.query.page) || 1; //parse int to make queries return as numbers and not strings. default page is 1 if not specified
 	const limit = parseInt(req.query.limit) || 50; //limits entries per page. default is 50 if not specified
-	const sortBy = req.query.sortBy;
-	const orderBy = req.query.orderBy;
+	const sortBy = req.query.sortBy; //name or id
+	const orderBy = req.query.orderBy; //asc or desc
 
 	//page * limit will give us which slice of the data we want to look at
 	const startIndex = (page - 1) * limit; //page - 1 because we start a 0 index
 	const endIndex = page * limit;
 
-	const range = {};
+	const results = {};
 
 	//checks if surrounding pages exist
 	if (endIndex < data.length) {
-		range.next = {
+		results.next = {
 			page: page + 1,
 			limit: limit
 		};
 	}
 
 	if (startIndex > 0) {
-		range.previous = {
+		results.previous = {
 			page: page - 1,
 			limit: limit
 		};
 	}
 
-	//orderBy id or name and sortBy asc or desc
+	// orderBy id or name and sortBy asc or desc
 	// if (req.query.sortBy && req.query.orderBy) {
-	// 	sort[req.query.sortBy] = req.query.orderBy === 'asc' ? 1 : -1;
+	// 	results[req.query.sortBy] = req.query.orderBy === 'desc' ? -1 : 1;
 	// }
 
-	//console.log(range.range.sort(sort));
+	// if sortBy is name and orderBy is asc then ...
 
-	range.range = data.slice(startIndex, endIndex);
+	// if sortBy is id and orderBy is asc then ...
 
-	res.json(range);
+	// sort either asc or desc
+	function order(data, orderBy) {
+		return data.sort((a, b) => {
+			return orderBy == 'asc' ? a.id - b.id : b.id - a.id;
+		});
+	}
+
+	results.results = order(data.slice(startIndex, endIndex), orderBy);
+
+	// console.log(results.results);
+
+	res.json(results);
 });
 
 const server = http.createServer(app);
