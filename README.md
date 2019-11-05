@@ -26,7 +26,7 @@ A single endpoint app built using the Express framework and the Node environment
 
 
 ### Queries and Pagination
-Using queries added onto the "/apps" endpoint allows us to specify which page we would like to view while limiting the number of data entries printed per page. The query parameter (req.query) is used over the path parameter (req.param) as it is the best practice when sorting or filtering data. If no queries are specified in the URI, built-in default values keeps everything running smoothly. A check is also implemented to show the previous and next pages available and how many entries will be shown on those pages.
+Using queries added onto the "/apps" endpoint allows us to specify which page we would like to view while limiting the number of data entries printed per page. Sort and order query params were added to allow us to organize the displayed data based on the id or name of the app and in an ascending or descending format. The query parameter (req.query) is used over the path parameter (req.param) as it is best practice when sorting or filtering data. If no queries are specified in the URI, built-in default values keep everything running smoothly. A check is also implemented to show the previous and next pages, if available, and how many entries will be shown on those pages.
 
 
 ## ⚙️ Setup <a name = "setup"></a>
