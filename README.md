@@ -20,7 +20,7 @@
 
 A single endpoint app built using the Express framework and the Node environment without the use of external libraries.
 
-#### Process
+### Process
 1. Set up Express and Node environment with server listening on port 3000
 2. Installed necessary dependencies in package.json
 3. Created dummy data using loops
