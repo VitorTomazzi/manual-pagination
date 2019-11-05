@@ -1,11 +1,8 @@
-# Manual Pagination
-
 <div align=center>
     <h1 align=center>
         <br>
         Manual Pagination Challenge
         <br>
-        <img width="100px" align=center src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" alt="NodeJS logo">
     </h1>
 </div>
 
